@@ -1,0 +1,59 @@
+<template>
+	<div class="ct"   onviewdisappear="viewdisappear">
+		        <wxc-button class="btn" type="{{type}}" size="middle" value="{{content}}" onclick="{{clicked}}" ></wxc-button>
+	</div>
+</template>
+<script >
+	require("weex-components");
+	module.exports={
+		// destroyed:function(){
+		// 	var $modal=require('@weex-module/floatwindow');
+		// 	$modal.hide();
+		// 	},
+		data:{
+			content:'点击',
+			type:'default',
+			isShow:false,
+		},
+		methods:{
+			clicked:function(){
+				this.isShow= !this.isShow;		
+				var $modal=require('@weex-module/floatwindow');
+				if(this.isShow){
+					$modal.show();
+				}else{
+					$modal.hide();
+				};
+			},	
+			 viewdisappear: function (){
+			 	 this.$call('floatwindow','hide', function() { });
+			 }		
+		}
+	}
+</script>
+<style >
+	.btn{
+		margin-top: 350px;
+		/*position: 0;*/
+		/*height: 1080;*/
+		/*flex-direction: column;center;*/
+		/*justify-content: center;*/
+		/*align-items: :  center;*/
+		/*height: this.$getConfig().deviceHeight;*/
+		/*width: this.$getConfig().deviceWidth;*/
+		/*align-items: center;*/
+	}
+	.ct{
+		/*height: 3000;*/
+		/*width: 3000;*/
+		/*flex: 1;*/
+		flex-direction: row;
+		/*flex-direction:column; */
+       		 /*align-items:center; */
+       		 /*justify-content:center; */
+		/*flex-direction: row;*/
+		/*flex-direction: column;*/
+		justify-content: center;
+		/*vertical-align: center;*/
+	}
+</style>

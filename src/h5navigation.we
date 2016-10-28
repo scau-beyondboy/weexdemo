@@ -1,0 +1,105 @@
+<template>
+    <div class="ct">
+        <div class="st">
+            <scroller append="tree" show-scrollbar="false" scroll-direction="vertical">
+                <div class="content" repeat="{{lists}}" onclick="{{clicked}}">
+                    <image class="img" src="{{img}}"></image>
+                    <text class="tx">{{text}}</text>
+                </div>
+                <!--  <div class="content"  onclick="{{clicked}}">
+                    <image class="img" src="https://assets.servedby-buysellads.com/p/manage/asset/id/28536"></image>
+                    <text class="tx">hahaha</text>
+                </div>     -->
+            </scroller>
+        </div>
+        <embed class="fr" src={{src}} type="weex" style="visibility: visible"></embed>
+        <<!-- div class="fr" style="background-color:#eee">
+    </div> -->
+    </div>
+</template>
+<script>
+module.exports = {
+    methods: {
+        clicked: function() {
+            console.log('beyondboy', this.$index);
+            var bundleUrl = this.$getConfig().bundleUrl;
+            nativeLog('beyondboy' + bundleUrl);
+            var isAndroidAssets = bundleUrl.indexOf('file://assets/') >= 0;
+            if (isAndroidAssets) {
+                if (this.$index%2 == 0)
+                    this.src = "file://assets/hello.js";
+                else {
+                    this.src = "file://assets/weex-main.js";
+                }
+            } else {
+                this.src = 'http://100.84.251.38:12580/examples/build/hello.js';
+            }
+            // var js=list[$index];
+            // js.text="clicked";
+        },
+    },
+    data: {
+        lists: [{
+            img: 'https://assets.servedby-buysellads.com/p/manage/asset/id/28536',
+            text: 'hahah',
+        }, {
+            img: 'https://assets.servedby-buysellads.com/p/manage/asset/id/28536',
+            text: 'hahah',
+        }, {
+            img: 'https://assets.servedby-buysellads.com/p/manage/asset/id/28536',
+            text: 'hahah',
+        }, {
+            img: 'https://assets.servedby-buysellads.com/p/manage/asset/id/28536',
+            text: 'hahah',
+        }, {
+            img: 'https://assets.servedby-buysellads.com/p/manage/asset/id/28536',
+            text: 'hahah',
+        }, {
+            img: 'https://assets.servedby-buysellads.com/p/manage/asset/id/28536',
+            text: 'hahah',
+        }, {
+            img: 'https://assets.servedby-buysellads.com/p/manage/asset/id/28536',
+            text: 'hahah',
+        }],
+        src: '',
+    }
+}
+</script>
+<style>
+.ct {
+    width: 600;
+    flex-direction: row;
+    background-color: #808080
+}
+
+,
+.st {
+    /*flex-direction: column;*/
+    width: 150;
+    background-color: #696969
+}
+
+,
+.content {
+    margin-top: 25;
+    align-items: center;
+    width: 150;
+}
+
+,
+.img {
+    height: 100;
+    width: 100;
+}
+
+,
+.tx {
+    text-align: center;
+    width: 100;
+    font-size: 30;
+}
+
+.fr {
+    flex: 1;
+}
+</style>
